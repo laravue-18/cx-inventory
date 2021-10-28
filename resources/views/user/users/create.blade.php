@@ -6,8 +6,8 @@
     <h6 class="element-header">
         New User
     </h6>
-    <div class="element-box">
-        <form action="{{ route('user.users.store') }}" method="post" enctype="multipart/form-data">
+    <div class="element-box row">
+        <form action="{{ route('user.users.store') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
             @csrf
 
             <div class="form-group">

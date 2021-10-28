@@ -7,8 +7,8 @@
         All Staffs
     </h6>
     <div class="element-box">
-        <div class="my-2">
-            <a href="{{ route('user.staffs.create') }}" class="btn btn-primary">New Staff</a>
+        <div class="my-2 text-right">
+            <a href="{{ route('user.staffs.create') }}" class="btn btn-primary mr-3">New Staff</a>
         </div>
         <div class="table-responsive">
             <table id="dtbl" width="100%" class="table table-striped table-lightfont">

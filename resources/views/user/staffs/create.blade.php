@@ -6,8 +6,8 @@
     <h6 class="element-header">
         New Staff
     </h6>
-    <div class="element-box">
-        <form action="{{ route('user.staffs.store') }}" method="post" enctype="multipart/form-data">
+    <div class="element-box row">
+        <form action="{{ route('user.staffs.store') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
             @csrf
 
             <div class="form-group">

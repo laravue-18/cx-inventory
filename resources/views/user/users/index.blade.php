@@ -7,8 +7,8 @@
         All Users
     </h6>
     <div class="element-box">
-        <div class="my-2">
-            <a href="{{ route('user.users.create') }}" class="btn btn-primary">New User</a>
+        <div class="my-2 text-right">
+            <a href="{{ route('user.users.create') }}" class="btn btn-primary mr-3">New User</a>
         </div>
         <div class="table-responsive">
             <table id="dtbl" width="100%" class="table table-striped table-lightfont">

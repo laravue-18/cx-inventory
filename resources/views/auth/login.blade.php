@@ -103,7 +103,7 @@
             <a href="/"><img alt="" src="img/logo-big.png" class="w-100"></a>
         </div>
         <h4 class="auth-header">
-            Login Form
+            Stock Management System
         </h4>
         <form method="POST" action="{{ route('login') }}">
             @csrf

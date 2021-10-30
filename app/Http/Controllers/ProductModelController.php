@@ -31,12 +31,14 @@ class ProductModelController extends Controller
 
     public function edit(ProductModel $model)
     {
-        return view('user.product-models.edit')->with(compact('model'));
+        $makes = Make::all();
+        return view('user.product-models.edit')->with(compact('model', 'makes'));
     }
 
     public function update(Request $request, ProductModel $model)
     {
         $data = $request->validate([
+            'make_id' => 'required',
             'name' => 'required',
         ]);
 

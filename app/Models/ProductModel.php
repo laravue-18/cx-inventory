@@ -10,4 +10,9 @@ class ProductModel extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $with = ['make'];
+
+    public function make(){
+        return $this->belongsTo('App\Models\Make');
+    }
 }

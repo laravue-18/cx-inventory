@@ -15,12 +15,31 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($rows as $row)
                         <tr>
                             <td>{{ $row->name }}</td>
+                            <td>
+                                <a href="{{ route('user.makes.edit', $row->id) }}">
+                                    <i class="os-icon os-icon-ui-49"></i></a>
+                                <a class="text-danger"
+                                   href="javascript:void();"
+                                   onclick="event.preventDefault(); document.getElementById('row-delete-{{$row->id}}').submit();"
+                                >
+                                    <i class="os-icon os-icon-ui-15"></i>
+                                </a>
+                                <form
+                                    id="row-delete-{{$row->id}}"
+                                    action="{{ route('user.makes.destroy', $row->id) }}" method="POST"
+                                    style="display: none;"
+                                >
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

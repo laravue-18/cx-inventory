@@ -23,6 +23,27 @@ class ProductStorageController extends Controller
         ]);
 
         ProductStorage::create($data);
-        return redirect('/user/storages')->with('message', 'New Storage has been added!');
+        return redirect(route('user.storages.index'))->with('message', 'New Storage has been added!');
+    }
+
+    public function edit(ProductStorage $storage)
+    {
+        return view('user.storages.edit')->with(compact('storage'));
+    }
+
+    public function update(Request $request, ProductStorage $storage)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $storage->update($data);
+        return redirect(route('user.storages.index'))->with('message', 'This Storage has been updated!');
+    }
+
+    public function destroy(ProductStorage $storage)
+    {
+        $storage->delete();
+        return redirect(route('user.storages.index'))->with('message', 'The Model has been deleted!');
     }
 }

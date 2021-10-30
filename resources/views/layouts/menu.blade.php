@@ -23,11 +23,11 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.product-types.index') }}">
+        <a href="{{ route('user.types.index') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>
-            <span>ProductTypes</span>
+            <span>Product Types</span>
         </a>
     </li>
     <li class="">
@@ -39,21 +39,14 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.product-models.index') }}">
+        <a href="{{ route('user.models.index') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>
-            <span>Product Models</span>
+            <span>Models</span>
         </a>
     </li>
-    <li class="">
-        <a href="{{ route('user.part-numbers.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
-            </div>
-            <span>Part Numbers</span>
-        </a>
-    </li>
+
     <li class="">
         <a href="{{ route('user.colours.index') }}">
             <div class="icon-w">

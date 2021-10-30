@@ -23,6 +23,27 @@ class ConditionController extends Controller
         ]);
 
         Condition::create($data);
-        return redirect('/user/conditions')->with('message', 'New Condition has been added!');
+        return redirect(route('user.conditions.index'))->with('message', 'New Condition has been added!');
+    }
+
+    public function edit(Condition $condition)
+    {
+        return view('user.conditions.edit')->with(compact('condition'));
+    }
+
+    public function update(Request $request, Condition $condition)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $condition->update($data);
+        return redirect(route('user.conditions.index'))->with('message', 'This Condition has been updated!');
+    }
+
+    public function destroy(Condition $condition)
+    {
+        $condition->delete();
+        return redirect(route('user.conditions.index'))->with('message', 'The Condition has been deleted!');
     }
 }

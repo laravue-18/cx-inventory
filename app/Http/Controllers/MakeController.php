@@ -23,6 +23,27 @@ class MakeController extends Controller
         ]);
 
         Make::create($data);
-        return redirect('/user/makes')->with('message', 'New Make has been added!');
+        return redirect(route('user.makes.index'))->with('message', 'New Make has been added!');
+    }
+
+    public function edit(Make $make)
+    {
+        return view('user.makes.edit')->with(compact('make'));
+    }
+
+    public function update(Request $request, Make $make)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $make->update($data);
+        return redirect(route('user.makes.index'))->with('message', 'This Make has been updated!');
+    }
+
+    public function destroy(Make $make)
+    {
+        $make->delete();
+        return redirect(route('user.makes.index'))->with('message', 'The Make has been deleted!');
     }
 }

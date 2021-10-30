@@ -23,6 +23,27 @@ class ColourController extends Controller
         ]);
 
         Colour::create($data);
-        return redirect('/user/colours')->with('message', 'New Colour has been added!');
+        return redirect(route('user.colours.index'))->with('message', 'New Colour has been added!');
+    }
+
+    public function edit(Colour $colour)
+    {
+        return view('user.colours.edit')->with(compact('colour'));
+    }
+
+    public function update(Request $request, Colour $colour)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $colour->update($data);
+        return redirect(route('user.colours.index'))->with('message', 'This Colour has been updated!');
+    }
+
+    public function destroy(Colour $colour)
+    {
+        $colour->delete();
+        return redirect(route('user.colours.index'))->with('message', 'The Colour has been deleted!');
     }
 }

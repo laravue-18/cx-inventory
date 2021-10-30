@@ -23,7 +23,28 @@ class ProductTypeController extends Controller
         ]);
 
         ProductType::create($data);
-        return redirect('/user/product-types')->with('message', 'New Product Type has been added!');
+        return redirect(route('user.types.index'))->with('message', 'New Product Type has been added!');
+    }
+
+    public function edit(ProductType $type)
+    {
+        return view('user.product-types.edit')->with(compact('type'));
+    }
+
+    public function update(Request $request, ProductType $type)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $type->update($data);
+        return redirect(route('user.types.index'))->with('message', 'This Product Type has been updated!');
+    }
+
+    public function destroy(ProductType $type)
+    {
+        $type->delete();
+        return redirect(route('user.types.index'))->with('message', 'The Product Type has been deleted!');
     }
 
 }

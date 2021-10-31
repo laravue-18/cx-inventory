@@ -6,6 +6,20 @@
             </div>
             <span>Dashboard</span></a>
     </li>
+    <li class="sub-header">
+        <span>Stock Management</span>
+    </li>
+    <li class="">
+        <a href="{{ route('user.products.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Stock In</span>
+        </a>
+    </li>
+    <li class="sub-header">
+        <span>User Management</span>
+    </li>
     <li class="">
         <a href="{{ route('user.staffs.index') }}">
             <div class="icon-w">
@@ -82,15 +96,5 @@
             <span>Locations</span>
         </a>
     </li>
-    <li class="sub-header">
-        <span>Stock</span>
-    </li>
-    <li class="">
-        <a href="{{ route('user.products.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
-            </div>
-            <span>Stock</span>
-        </a>
-    </li>
+
 </ul>

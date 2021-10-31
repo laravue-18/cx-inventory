@@ -39,62 +39,43 @@
     <li class="sub-header">
         <span>Product Details</span>
     </li>
-    <li class="">
-        <a href="{{ route('user.types.index') }}">
+    <li class=" has-sub-menu">
+        <a href="layouts_menu_top_image.html">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>
-            <span>Product Types</span>
+            <span>Product Details</span>
         </a>
-    </li>
-    <li class="">
-        <a href="{{ route('user.makes.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
-            </div>
-            <span>Makes</span>
-        </a>
-    </li>
-    <li class="">
-        <a href="{{ route('user.models.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
-            </div>
-            <span>Models</span>
-        </a>
-    </li>
+        <div class="sub-menu-w">
 
-    <li class="">
-        <a href="{{ route('user.colours.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
+            <div class="sub-menu-icon">
+                <i class="os-icon os-icon-layers"></i>
             </div>
-            <span>Product Colours</span>
-        </a>
-    </li>
-    <li class="">
-        <a href="{{ route('user.storages.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
+            <div class="sub-menu-i">
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('user.types.index') }}">Product Type</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.makes.index') }}">Make</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.models.index') }}">Model</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.colours.index') }}">Colour</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.storages.index') }}">Storage</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.conditions.index') }}">Condition</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.locations.index') }}">Location</a>
+                    </li>
+                </ul>
             </div>
-            <span>Storages</span>
-        </a>
+        </div>
     </li>
-    <li class="">
-        <a href="{{ route('user.conditions.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
-            </div>
-            <span>Conditions</span>
-        </a>
-    </li>
-    <li class="">
-        <a href="{{ route('user.locations.index') }}">
-            <div class="icon-w">
-                <div class="os-icon os-icon-layers"></div>
-            </div>
-            <span>Locations</span>
-        </a>
-    </li>
-
 </ul>

@@ -14,15 +14,13 @@
             <table id="dtbl" width="100%" class="table table-striped table-lightfont">
                 <thead>
                     <tr>
-                        <th>Model</th>
                         <th>Make</th>
-                        <th>Supplier</th>
-                        <th>Location</th>
-                        <th>Part Number</th>
-                        <th>Colour</th>
+                        <th>Model</th>
+                        <th>Part No</th>
                         <th>Storage</th>
+                        <th>Colour</th>
                         <th>Qty</th>
-                        <th>Price</th>
+                        <th>Client</th>
                         <th>Notes</th>
                         <th>Action</th>
                     </tr>
@@ -30,15 +28,13 @@
                 <tbody>
                     @foreach($rows as $row)
                         <tr>
-                            <td>{{ $row->productModel->name }}</td>
                             <td>{{ $row->make->name }}</td>
-                            <td>{{ $row->supplier->name }}</td>
-                            <td>{{ $row->location->name }}</td>
+                            <td>{{ $row->productModel->name }}</td>
                             <td>{{ $row->part_number }}</td>
-                            <td>{{ $row->colour->name }}</td>
                             <td>{{ $row->storage->name }}</td>
+                            <td>{{ $row->colour->name }}</td>
                             <td>{{ $row->qty }}</td>
-                            <td>{{ $row->price }}</td>
+                            <td>{{ $row->supplier->name }}</td>
                             <td>{{ $row->note }}</td>
                             <td>
                                 <a href="{{ route('user.products.edit', $row->id) }}">

@@ -5,15 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Make extends Model
+class Location extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
-    protected $with = [];
-
-    public function models(){
-        return $this->hasMany('App\Models\ProductModel');
-    }
 }

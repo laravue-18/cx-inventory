@@ -22,6 +22,9 @@
             <span>Users</span>
         </a>
     </li>
+    <li class="sub-header">
+        <span>Product Details</span>
+    </li>
     <li class="">
         <a href="{{ route('user.types.index') }}">
             <div class="icon-w">
@@ -69,6 +72,25 @@
                 <div class="os-icon os-icon-layers"></div>
             </div>
             <span>Conditions</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ route('user.locations.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Locations</span>
+        </a>
+    </li>
+    <li class="sub-header">
+        <span>Stock</span>
+    </li>
+    <li class="">
+        <a href="{{ route('user.products.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Stock</span>
         </a>
     </li>
 </ul>

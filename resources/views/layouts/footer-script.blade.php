@@ -26,9 +26,12 @@
 <script src="/bower_components/bootstrap/js/dist/tab.js"></script>
 <script src="/bower_components/bootstrap/js/dist/tooltip.js"></script>
 <script src="/bower_components/bootstrap/js/dist/popover.js"></script>
-<script src="/js/dataTables.bootstrap4.min.js"></script>
+<script src="/js/vue.js"></script>
+
+@yield('script1')
+
 <script src="/js/demo_customizer.js?version=4.5.0"></script>
 <script src="/js/main.js?version=4.5.0"></script>
 
-@yield('script')
+@yield('script2')
 

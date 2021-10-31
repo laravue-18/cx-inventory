@@ -20,5 +20,8 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::resource('colours', \App\Http\Controllers\ColourController::class);
     Route::resource('storages', \App\Http\Controllers\ProductStorageController::class);
     Route::resource('conditions', \App\Http\Controllers\ConditionController::class);
+    Route::resource('locations', \App\Http\Controllers\LocationController::class);
+
+    Route::resource('products', \App\Http\Controllers\ProductController::class);
 });
 

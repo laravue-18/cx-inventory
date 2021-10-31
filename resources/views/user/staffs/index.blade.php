@@ -52,7 +52,11 @@
     </div>
 @endsection
 
-@section('script')
+@section('script1')
+    <script src="/js/dataTables.bootstrap4.min.js"></script>
+@endsection
+
+@section('script2')
     <script>
         $('#dtbl').DataTable({
             // buttons: ['copy', 'excel', 'pdf']

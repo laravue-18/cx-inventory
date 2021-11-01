@@ -15,7 +15,6 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Address</th>
                         <th>City</th>
                         <th>Country</th>
                         <th>Contact Number</th>
@@ -29,7 +28,6 @@
                     @foreach($rows as $row)
                         <tr>
                             <td>{{ $row->name }}</td>
-                            <td>{{ $row->address }}</td>
                             <td>{{ $row->city }}</td>
                             <td>{{ $row->country }}</td>
                             <td>{{ $row->phone }}</td>

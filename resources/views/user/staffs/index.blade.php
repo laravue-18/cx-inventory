@@ -59,7 +59,7 @@
 @section('script2')
     <script>
         $('#dtbl').DataTable({
-            // buttons: ['copy', 'excel', 'pdf']
+
         });
     </script>
 @endsection

@@ -17,6 +17,22 @@
             <span>Stock In</span>
         </a>
     </li>
+    <li class="">
+        <a href="{{ route('user.products.createOut') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Stock Out</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ route('user.products.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Return</span>
+        </a>
+    </li>
     <li class="sub-header">
         <span>User Management</span>
     </li>

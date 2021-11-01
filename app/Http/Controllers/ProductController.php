@@ -114,4 +114,15 @@ class ProductController extends Controller
         $product->delete();
         return redirect(route('user.products.index'))->with('message', 'The Product has been deleted!');
     }
+
+    public function createOut(){
+        $suppliers = User::all();
+        $locations = Location::all();
+        $makes = Make::with('models')->get();
+        $colors = Colour::all();
+        $storages = ProductStorage::all();
+        $conditions = Condition::all();
+
+        return view('user.products.out')->with(compact('suppliers', 'locations', 'makes', 'colors', 'storages', 'conditions'));
+    }
 }

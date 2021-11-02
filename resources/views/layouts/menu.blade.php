@@ -26,7 +26,7 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.products.index') }}">
+        <a href="{{ route('user.products.createReturn') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>

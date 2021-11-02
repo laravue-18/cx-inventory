@@ -25,5 +25,8 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::resource('products', \App\Http\Controllers\ProductController::class);
     Route::get('stockout', [\App\Http\Controllers\ProductController::class, 'createOut'])->name('products.createOut');
     Route::post('stockout', [\App\Http\Controllers\ProductController::class, 'storeOut'])->name('products.storeOut');
+    Route::get('returns', [\App\Http\Controllers\ProductController::class, 'createReturn'])->name('products.createReturn');
+    Route::post('returns', [\App\Http\Controllers\ProductController::class, 'storeReturn'])->name('products.storeReturn');
+
 });
 

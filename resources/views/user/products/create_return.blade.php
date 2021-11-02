@@ -10,30 +10,12 @@
         <form action="{{ route('user.products.storeOut') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
             @csrf
 
-            <div class="form-group">
-                <label>Customer</label>
-                <select name="user_id" id="" class="form-control" required>
-                    <option value="">Select Customer</option>
-                    @foreach($suppliers as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Location</label>
-                <select name="location_id" id="" class="form-control" required>
-                    <option value="">Select Location</option>
-                    @foreach($locations as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div>
             <div id="vue1">
                 <div class="form-group">
                     <label for="">Scan Product</label>
                     <div class="row">
                         <div class="col-md-10 col-8">
-                            <input name="search" type="text" @change.stop.prevent="searchProduct" class="form-control" placeholder="IMEI / SN / P Code" required>
+                            <input name="search" type="text" @change.stop.prevent="searchProduct" class="form-control" placeholder="IMEI / SN / P Code / Transaction ID" required>
                         </div>
                         <div class="col-md-2 col-4">
                             <button class="btn btn btn-primary mr-1 waves-effect waves-light btn-block h-100" @click.stop.prevent="searchProduct">Scan</button>
@@ -71,8 +53,19 @@
             </div>
 
             <div class="form-group">
-                <label>Price</label>
-                <input name="price" type="number" class="form-control" required>
+                <label> Reason for Return </label>
+                <select name="location_id" id="" class="form-control" required>
+                    <option value="">Select Reason</option>
+                        <option value="faulty"> Faulty </option>
+                        <option value="stock-in"> Stock In </option>
+                        <option value="damage"> Damage </option>
+                        <option value="exchange"> Exchange </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Refund Value</label>
+                <input name="value" type="number" class="form-control" required>
             </div>
             <div class="form-group">
                 <label>Note</label>

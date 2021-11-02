@@ -125,4 +125,23 @@ class ProductController extends Controller
 
         return view('user.products.out')->with(compact('suppliers', 'locations', 'makes', 'colors', 'storages', 'conditions'));
     }
+
+    public function storeOut(Request $request){
+
+    }
+
+    public function createReturn(){
+        $suppliers = User::all();
+        $locations = Location::all();
+        $makes = Make::with('models')->get();
+        $colors = Colour::all();
+        $storages = ProductStorage::all();
+        $conditions = Condition::all();
+
+        return view('user.products.create_return')->with(compact('suppliers', 'locations', 'makes', 'colors', 'storages', 'conditions'));
+    }
+
+    public function storeReturn(Request $request){
+
+    }
 }

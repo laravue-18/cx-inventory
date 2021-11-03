@@ -20,6 +20,15 @@
                 </select>
             </div>
             <div class="form-group">
+                <label>Product Type</label>
+                <select name="type_id" id="" class="form-control" required>
+                    <option value="">Select Location</option>
+                    @foreach($types as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Location</label>
                 <select name="location_id" id="" class="form-control" required>
                     <option value="">Select Location</option>

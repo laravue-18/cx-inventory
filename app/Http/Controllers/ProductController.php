@@ -9,6 +9,7 @@ use App\Models\Make;
 use App\Models\Product;
 use App\Models\ProductModel;
 use App\Models\ProductStorage;
+use App\Models\ProductType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,19 +24,21 @@ class ProductController extends Controller
     public function create()
     {
         $suppliers = User::all();
+        $types = ProductType::all();
         $locations = Location::all();
         $makes = Make::with('models')->get();
         $colors = Colour::all();
         $storages = ProductStorage::all();
         $conditions = Condition::all();
 
-        return view('user.products.create')->with(compact('suppliers', 'locations', 'makes', 'colors', 'storages', 'conditions'));
+        return view('user.products.create')->with(compact('suppliers', 'types', 'locations', 'makes', 'colors', 'storages', 'conditions'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'user_id' => 'required',
+            'type_id' => 'required',
             'location_id' => 'required',
             'make_id' => 'required',
             'product_model_id' => 'required',
@@ -70,13 +73,14 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $suppliers = User::all();
+        $types = ProductType::all();
         $locations = Location::all();
         $makes = Make::with('models')->get();
         $colors = Colour::all();
         $storages = ProductStorage::all();
         $conditions = Condition::all();
 
-        return view('user.products.edit')->with(compact('product', 'suppliers', 'locations', 'makes', 'colors', 'storages', 'conditions'));
+        return view('user.products.edit')->with(compact('product', 'suppliers', 'types', 'locations', 'makes', 'colors', 'storages', 'conditions'));
     }
 
     public function update(Request $request, Product $product)

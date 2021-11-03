@@ -26,10 +26,12 @@ class StaffController extends Controller
             'country' => 'required',
             'phone' => 'required',
             'email' => 'required',
+            'password' => 'required',
             'location' => 'required',
         ]);
 
         $data['status'] = $request['status'] ? true : false;
+        $data['password'] = bcrypt($request['password']);
 
         Staff::create($data);
         return redirect('/user/staffs')->with('message', 'New Staff has been added!');
@@ -53,10 +55,12 @@ class StaffController extends Controller
             'country' => 'required',
             'phone' => 'required',
             'email' => 'required',
+            'password' => 'required',
             'location' => 'required',
         ]);
 
         $data['status'] = $request['status'] ? true : false;
+        $data['password'] = bcrypt($request['password']);
 
         $staff->update($data);
         return redirect('/user/staffs')->with('message', 'This Staff has been updated!');

@@ -94,4 +94,39 @@
             </div>
         </div>
     </li>
+    <li class="sub-header">
+        <span>Cell Exchange</span>
+    </li>
+    <li class="">
+        <a href="{{ route('user.members.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Members</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ route('user.members.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Posts</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ route('user.members.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Make</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="{{ route('user.members.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Model</span>
+        </a>
+    </li>
 </ul>

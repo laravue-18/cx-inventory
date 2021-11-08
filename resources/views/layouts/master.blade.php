@@ -43,5 +43,7 @@
 
     <!-- JAVASCRIPT -->
     @include('layouts.footer-script')
+
+    @yield('script')
     </body>
 </html>

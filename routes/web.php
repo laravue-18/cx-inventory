@@ -28,5 +28,9 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::get('returns', [\App\Http\Controllers\ProductController::class, 'createReturn'])->name('products.createReturn');
     Route::post('returns', [\App\Http\Controllers\ProductController::class, 'storeReturn'])->name('products.storeReturn');
 
+    Route::get('members', function(){
+        return view('user.members');
+    })->name('members.index');
+
 });
 

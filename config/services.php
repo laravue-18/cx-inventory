@@ -32,6 +32,17 @@ return [
 
     'paypal' => [
         'key' => env('PAYPAL_KEY')
-    ]
+    ],
+
+    'firebase' => [
+        'api_key' => 'AIzaSyCuh0RGbUDqpxkkyq8ohzI0wIGKu1FeHp4',
+        'auth_domain' => 'cx-app-b3b2a.firebaseapp.com',
+        'database_url' => 'https://cx-app-b3b2a.firebaseio.com',
+        'project_id' => 'cx-app-b3b2a',
+        'storage_bucket' => 'cx-app-b3b2a.appspot.com',
+        'messaging_sender_id' => '136046956873',
+        'app_id' => '1:136046956873:web:9ede56d9c1a0373e390a98',
+        'measurement_id' => 'G-YW5M5KSEVD',
+    ],
 
 ];

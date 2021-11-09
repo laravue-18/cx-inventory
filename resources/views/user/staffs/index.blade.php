@@ -56,10 +56,9 @@
     <script src="/js/dataTables.bootstrap4.min.js"></script>
 @endsection
 
-@section('script2')
+@section('script1')
+    <script src="/js/dataTables.bootstrap4.min.js"></script>
     <script>
-        $('#dtbl').DataTable({
-
-        });
+        $('#dtbl').DataTable();
     </script>
 @endsection

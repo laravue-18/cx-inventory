@@ -106,7 +106,7 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.members.index') }}">
+        <a href="{{ route('user.posts.index') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>

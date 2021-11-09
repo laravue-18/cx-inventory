@@ -32,5 +32,9 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
         return view('user.members');
     })->name('members.index');
 
+    Route::get('posts', function(){
+        return view('user.posts');
+    })->name('posts.index');
+
 });
 

@@ -10,40 +10,34 @@
         <div class="table-responsive">
             <table id="mainTable" class="table table-lightborder table-striped table-lightfont dataTable">
                 <thead>
+                    <th>Model</th>
                     <th>Make</th>
                     <th>Model</th>
                     <th>PartNo</th>
+                    <th>Action</th>
                 </thead>
             </table>
         </div>
     </div>
 
     <!-- Update Model -->
-    <form action="" method="POST" class="users-update-record-model form-horizontal">
-        <div id="update-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="width:55%;">
-                <div class="modal-content" style="overflow: hidden;">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="custom-width-modalLabel">Update</h4>
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">×
-                        </button>
-                    </div>
-                    <div class="modal-body" id="updateBody">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light"
-                                data-dismiss="modal">Close
-                        </button>
-                        <button type="button" class="btn btn-success updateUser">Update
-                        </button>
-                    </div>
+    <div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="width:55%;">
+            <div class="modal-content" style="overflow: hidden;">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="custom-width-modalLabel">Edit Post</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+                </div>
+                <div class="modal-body">
+                    <form action=""></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal"> Close </button>
+                    <button type="button" class="btn btn-success save"> Save </button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 
     <!-- Delete Model -->
     <form action="" method="POST" class="users-remove-record-model">
@@ -92,30 +86,91 @@
         };
         firebase.initializeApp(config);
 
+        let data = []
+        var tbl = $('#mainTable').DataTable({
+            "data": data,
+            "columns" : [
+                { "data" : "model"},
+                { "data" : "selmake"},
+                { "data" : "selmodel"},
+                { "data" : "selPartNo"},
+                {
+                    render: function (data, type, row) {
+                        return `<button class="btn text-primary btn-edit">
+                                   <i class=" os-icon os-icon-ui-49"></i>
+                                </button>
+                                <button class="btn text-danger btn-delete">
+                                   <i class="os-icon os-icon-ui-15"></i>
+                                </button>`
+                    }
+                },
+            ],
+        })
+
         function fetchData(){
-            // firebase.firestore().collection("users").onSnapshot((snapshot) => {
-            //     console.log(snapshot)
-            // })
-            let data = []
-            var tbl = $('#mainTable').DataTable({
-                "data": data,
-                "columns" : [
-                    { "data" : "selmake"},
-                    { "data" : "selmodel"},
-                    { "data" : "selPartNo"},
-                ]
-            })
-            firebase.database().ref('/NewPosts/buy/Mobile Phones').once('value', function(snapshot){
-                snapshot.forEach((ChildSnapshot) => {
-                    ChildSnapshot.forEach((item) => {
-                        console.log([item.val()])
-                        tbl.rows.add([item.val()]).draw()
+
+            firebase.database().ref('/NewPosts/buy').on('value', function(models){
+                tbl.clear().draw();
+                // types.forEach((models) => {
+                //     let type = models.key
+                //     console.log(type)
+                    models.forEach((mIds) => {
+                        let model = mIds.key
+                        mIds.forEach((sIds) => {
+                            let mId = sIds.key
+                            sIds.forEach(( item ) => {
+                                post = item.val()
+                                // post.type = type
+                                post.model = model
+                                post.mId = mId
+                                post.sId = item.key
+                                tbl.rows.add([post]).draw()
+                            })
+                        })
                     })
-                })
+                // })
+                // types.forEach((ChildSnapshot) => {
+                //     ChildSnapshot.forEach((item) => {
+                //         tbl.rows.add([item.val()]).draw()
+                //     })
+                // })
             })
 
         }
 
         window.onload = fetchData
+
+        $(function(){
+            var closeButtons =$('.close');
+            let model = null
+            let mId = null
+            let sId = null
+
+            $('#mainTable').on('click', '.btn-edit', function(){
+                let post = tbl.row($(this).parents('tr')).data()
+                model = post.model
+                mId = post.mId
+                sId = post.sId
+                $('#editModal form').html(`
+                    <div class="form-group">
+                        <label>Make</label>
+                        <input type="text" name="selmake" class="form-control" value="${post.selmake}">
+                    </div>
+                `)
+                $('#editModal').modal('show')
+            })
+
+            $('#editModal .save').on('click', function(){
+                firebase.database().ref('/NewPosts/buy/' + model + '/' + mId + '/' + sId ).update({'selmake': 'AAAAA'})
+                closeButtons.trigger('click');
+            })
+
+            $('#mainTable').on('click', '.btn-delete', function(){
+                if(confirm('Are you sure')){
+                    let post = tbl.row($(this).parents('tr')).data()
+                    firebase.database().ref('/NewPosts/buy/' + post.model + '/' + post.mId + '/' + post.sId ).remove()
+                }
+            })
+        })
     </script>
 @endsection

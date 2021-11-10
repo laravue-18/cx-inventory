@@ -98,7 +98,7 @@
         <span>Cell Exchange</span>
     </li>
     <li class="">
-        <a href="{{ route('user.members.index') }}">
+        <a href="{{ route('user.cx.members') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>
@@ -106,7 +106,7 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.posts.index') }}">
+        <a href="{{ route('user.cx.posts') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>
@@ -114,7 +114,7 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.members.index') }}">
+        <a href="{{ route('user.cx.makes') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>
@@ -122,7 +122,7 @@
         </a>
     </li>
     <li class="">
-        <a href="{{ route('user.members.index') }}">
+        <a href="{{ route('user.cx.models') }}">
             <div class="icon-w">
                 <div class="os-icon os-icon-layers"></div>
             </div>

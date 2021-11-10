@@ -10,10 +10,7 @@
         <div class="table-responsive">
             <table id="mainTable" class="table table-lightborder table-striped table-lightfont dataTable">
                 <thead>
-                    <th>Model</th>
                     <th>Make</th>
-                    <th>Model</th>
-                    <th>PartNo</th>
                     <th>Action</th>
                 </thead>
             </table>
@@ -38,35 +35,10 @@
             </div>
         </div>
     </div>
-
-    <!-- Delete Model -->
-    <form action="" method="POST" class="users-remove-record-model">
-        <div id="remove-modal" data-backdrop="static" data-keyboard="false" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel"
-             aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-dialog-centered" style="width:55%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="custom-width-modalLabel">Delete</h4>
-                        <button type="button" class="close remove-data-from-delete-form" data-dismiss="modal" aria-hidden="true">×
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you want to delete this record?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form"
-                                data-dismiss="modal">Close
-                        </button>
-                        <button type="button" class="btn btn-danger waves-effect waves-light deleteRecord">Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
 @endsection
 
 @section('script')
+    <script src="/bower_components/jquery.serializejson.js"></script>
     <script src="/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -90,10 +62,7 @@
         var tbl = $('#mainTable').DataTable({
             "data": data,
             "columns" : [
-                { "data" : "model"},
-                { "data" : "selmake"},
-                { "data" : "selmodel"},
-                { "data" : "selPartNo"},
+                { "data" : "name"},
                 {
                     render: function (data, type, row) {
                         return `<button class="btn text-primary btn-edit">
@@ -109,31 +78,11 @@
 
         function fetchData(){
 
-            firebase.database().ref('/NewPosts/buy').on('value', function(models){
+            firebase.database().ref('/Make').on('value', function(makes){
                 tbl.clear().draw();
-                // types.forEach((models) => {
-                //     let type = models.key
-                //     console.log(type)
-                    models.forEach((mIds) => {
-                        let model = mIds.key
-                        mIds.forEach((sIds) => {
-                            let mId = sIds.key
-                            sIds.forEach(( item ) => {
-                                post = item.val()
-                                // post.type = type
-                                post.model = model
-                                post.mId = mId
-                                post.sId = item.key
-                                tbl.rows.add([post]).draw()
-                            })
-                        })
-                    })
-                // })
-                // types.forEach((ChildSnapshot) => {
-                //     ChildSnapshot.forEach((item) => {
-                //         tbl.rows.add([item.val()]).draw()
-                //     })
-                // })
+                makes.forEach((make) => {
+                    tbl.rows.add([{'name' : make.key}]).draw()
+                })
             })
 
         }
@@ -161,7 +110,7 @@
             })
 
             $('#editModal .save').on('click', function(){
-                firebase.database().ref('/NewPosts/buy/' + model + '/' + mId + '/' + sId ).update({'selmake': 'AAAAA'})
+                firebase.database().ref('/NewPosts/buy/' + model + '/' + mId + '/' + sId ).update({})
                 closeButtons.trigger('click');
             })
 

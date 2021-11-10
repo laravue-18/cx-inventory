@@ -115,6 +115,7 @@
 @endsection
 
 @section('script')
+    <script src="/bower_components/jquery.serializejson.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use

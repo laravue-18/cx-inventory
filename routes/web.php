@@ -28,13 +28,21 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::get('returns', [\App\Http\Controllers\ProductController::class, 'createReturn'])->name('products.createReturn');
     Route::post('returns', [\App\Http\Controllers\ProductController::class, 'storeReturn'])->name('products.storeReturn');
 
-    Route::get('members', function(){
-        return view('user.members');
-    })->name('members.index');
+    Route::get('cx/members', function(){
+        return view('user.cx.members');
+    })->name('cx.members');
 
-    Route::get('posts', function(){
-        return view('user.posts');
-    })->name('posts.index');
+    Route::get('cx/posts', function(){
+        return view('user.cx.posts');
+    })->name('cx.posts');
+
+    Route::get('cx/makes', function(){
+        return view('user.cx.makes');
+    })->name('cx.makes');
+
+    Route::get('cx/models', function(){
+        return view('user.cx.models');
+    })->name('cx.models');
 
 });
 

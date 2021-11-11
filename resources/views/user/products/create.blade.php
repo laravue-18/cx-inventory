@@ -116,7 +116,7 @@
     </div>
 @endsection
 
-@section('script2')
+@section('script')
     <script>
         $(function(){
             const vue1 = new Vue({

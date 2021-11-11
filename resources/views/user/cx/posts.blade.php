@@ -195,6 +195,10 @@
                         <label>Make</label>
                         <input type="text" name="selmake" class="form-control" value="${post.selmake}">
                     </div>
+                    <div class="form-group">
+                        <label>Model</label>
+                        <input type="text" name="selmake" class="form-control" value="${post.selmake}">
+                    </div>
                 `)
                 $('#editModal').modal('show')
             })

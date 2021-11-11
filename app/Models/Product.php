@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'location_id', 'make_id', 'product_model_id', 'part_number', 'colour_id', 'storage_id', 'qty', 'price', 'note'];
+    protected $fillable = ['user_id', 'type_id', 'location_id', 'make_id', 'product_model_id', 'part_number', 'colour_id', 'storage_id', 'qty', 'price', 'note'];
 
     public function productModel(){
         return $this->belongsTo('App\Models\ProductModel');

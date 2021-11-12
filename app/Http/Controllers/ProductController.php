@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Colour;
 use App\Models\Condition;
+use App\Models\Item;
 use App\Models\Location;
 use App\Models\Make;
 use App\Models\Product;
@@ -147,5 +148,14 @@ class ProductController extends Controller
 
     public function storeReturn(Request $request){
 
+    }
+
+    public function scan(){
+        $items = Item::filter(request(['search']))->get();
+        $products = $items->map(function ($item) {
+            return $item->product->load('productType', 'make', 'productModel');
+        });
+        $merged = $products->merge(Product::with('productType', 'make', 'productModel')->filter(request(['search']))->get());
+        return $merged;
     }
 }

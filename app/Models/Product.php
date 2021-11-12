@@ -11,6 +11,17 @@ class Product extends Model
 
     protected $fillable = ['user_id', 'type_id', 'location_id', 'make_id', 'product_model_id', 'part_number', 'colour_id', 'storage_id', 'qty', 'price', 'note'];
 
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['search'] ?? false, function($query, $search){
+            $query
+                ->where('id', 'like', (int)ltrim($search, "P"));
+        });
+    }
+
+    public function productType(){
+        return $this->belongsTo('App\Models\ProductType', 'type_id');
+    }
+
     public function productModel(){
         return $this->belongsTo('App\Models\ProductModel');
     }

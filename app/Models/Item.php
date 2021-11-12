@@ -10,4 +10,16 @@ class Item extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query
+                ->where('serial_number', 'like', $search );
+        });
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

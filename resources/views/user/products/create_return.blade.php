@@ -15,7 +15,7 @@
                     <label for="">Scan Product</label>
                     <div class="row">
                         <div class="col-md-10 col-8">
-                            <input name="search" type="text" @change.stop.prevent="searchProduct" class="form-control" placeholder="IMEI / SN / P Code / Transaction ID" required>
+                            <input name="search" id="search" type="text" @change.stop.prevent="" class="form-control" placeholder="IMEI / SN / P Code / Transaction ID" required>
                         </div>
                         <div class="col-md-2 col-4">
                             <button class="btn btn btn-primary mr-1 waves-effect waves-light btn-block h-100" @click.stop.prevent="searchProduct">Scan</button>
@@ -38,10 +38,10 @@
                             <tbody>
                                 <template v-for = 'product in products'>
                                     <tr>
-                                        <td> @{{ product.code }} </td>
-                                        <td> @{{ product.type }} </td>
-                                        <td> @{{ product.make }} </td>
-                                        <td> @{{ product.model }} </td>
+                                        <td> @{{ pcode(product.id) }} </td>
+                                        <td> @{{ product.product_type ? product.product_type.name : ''}} </td>
+                                        <td> @{{ product.make ? product.make.name : '' }} </td>
+                                        <td> @{{ product.product_model ? product.product_model.name : '' }} </td>
                                         <td> $ @{{ product.price }}</td>
                                     </tr>
                                 </template>
@@ -92,27 +92,44 @@
 
                 methods: {
                     searchProduct(){
-                        this.products = [{
-                                'id' : 4,
-                                'code' : 'P000012',
-                                'type' : 'type1',
-                                'make' : 'Apple',
-                                'model': 'iPhone 3G',
-                                'price' : 23
+                        const data = { search: $('#search').val() };
+
+                        fetch('{{ route('user.scan-products') }}', {
+                            method: 'POST', // or 'PUT'
+                            headers: {
+                                'content-type': 'application/json',
+                                "Accept": "application/json, text-plain, */*",
+                                "X-Requested-With": "XMLHttpRequest",
+                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                             },
-                            {
-                                'id' : 4,
-                                'code' : 'P000012',
-                                'type' : 'type1',
-                                'make' : 'Apple',
-                                'model': 'iPhone 3G',
-                                'price': 35
-                            }
-                        ]
+                            body: JSON.stringify(data),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if(data.length){
+                                    this.products = data
+                                }else{
+                                    alert('There is no data.')
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+
+
                     }
                 }
             });
         })
+
+        function pcode(str){
+            str += '';
+            while (str.length < 6) {
+                str = '0' + str;
+            }
+            str = 'P' + str;
+            return str;
+        }
 
     </script>
 @endsection

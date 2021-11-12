@@ -71,12 +71,15 @@
         let data = []
         var tbl = $('#mainTable').DataTable({
             "data": data,
-            "columns" : [
+            'createdRow': function( row, data, dataIndex ) {
+                $(row).attr('id', data.mId + '-' + data.sId);
+            },
+            'columns' : [
                 { "data" : "type"},
                 {
                     render: function ( data, type, row ) {
                         return row.product ? row.product : '';
-                    }
+                    },
                 },
                 {
                     render: function ( data, type, row ) {
@@ -181,13 +184,15 @@
 
         $(function(){
             var closeButtons =$('.close');
-            let model = null
+            let postType = null
+            let productType = null
             let mId = null
             let sId = null
 
             $('#mainTable').on('click', '.btn-edit', function(){
                 let post = tbl.row($(this).parents('tr')).data()
-                product = post.product
+                postType = post.type
+                productType = post.product
                 mId = post.mId
                 sId = post.sId
                 $('#editModal form').html(`
@@ -232,14 +237,14 @@
             })
 
             $('#editModal .save').on('click', function(){
-                firebase.database().ref('/NewPosts/buy/' + product + '/' + mId + '/' + sId ).update($('#editModal form').serializeJSON())
+                firebase.database().ref('/NewPosts/' + postType + '/' + productType + '/' + mId + '/' + sId ).update($('#editModal form').serializeJSON())
                 closeButtons.trigger('click');
             })
 
             $('#mainTable').on('click', '.btn-delete', function(){
                 if(confirm('Are you sure')){
                     let post = tbl.row($(this).parents('tr')).data()
-                    firebase.database().ref('/NewPosts/buy/' + post.product + '/' + post.mId + '/' + post.sId ).remove()
+                    firebase.database().ref('/NewPosts/' + postType + '/' + productType + '/' + mId + '/' + sId ).remove()
                 }
             })
         })

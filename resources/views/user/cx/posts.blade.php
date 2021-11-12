@@ -197,7 +197,35 @@
                     </div>
                     <div class="form-group">
                         <label>Model</label>
-                        <input type="text" name="selmake" class="form-control" value="${post.selmake}">
+                        <input type="text" name="selmodel" class="form-control" value="${post.selmodel}">
+                    </div>
+                    <div class="form-group">
+                        <label>Part No</label>
+                        <input type="text" name="selPartNo" class="form-control" value="${post.selPartNo}">
+                    </div>
+                    <div class="form-group">
+                        <label>SPEC</label>
+                        <input type="text" name="moreregional" class="form-control" value="${post.moreregional}">
+                    </div>
+                    <div class="form-group">
+                        <label>COLOR</label>
+                        <input type="text" name="selColor" class="form-control" value="${post.selColor}">
+                    </div>
+                    <div class="form-group">
+                        <label>STORAGE</label>
+                        <input type="text" name="morestorage" class="form-control" value="${post.morestorage}">
+                    </div>
+                    <div class="form-group">
+                        <label>TYPE CONDITION</label>
+                        <input type="text" name="morestockcondition" class="form-control" value="${post.morestockcondition}">
+                    </div>
+                    <div class="form-group">
+                        <label>QTY</label>
+                        <input type="text" name="selQuantity" class="form-control" value="${post.selQuantity}">
+                    </div>
+                    <div class="form-group">
+                        <label>DESCRIPTION</label>
+                        <input type="text" name="moredescription" class="form-control" value="${post.moredescription}">
                     </div>
                 `)
                 $('#editModal').modal('show')

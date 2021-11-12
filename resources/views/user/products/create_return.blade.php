@@ -106,11 +106,10 @@
                         })
                             .then(response => response.json())
                             .then(data => {
-                                if(data.length){
-                                    this.products = data
-                                }else{
+                                if(!data.length){
                                     alert('There is no data.')
                                 }
+                                this.products = data
                             })
                             .catch((error) => {
                                 console.error('Error:', error);

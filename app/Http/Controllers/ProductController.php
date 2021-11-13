@@ -88,6 +88,7 @@ class ProductController extends Controller
     {
         $data = $request->validate([
             'user_id' => 'required',
+            'type_id' => 'required',
             'location_id' => 'required',
             'make_id' => 'required',
             'product_model_id' => 'required',

@@ -21,6 +21,15 @@
                 </select>
             </div>
             <div class="form-group">
+                <label>Product Type</label>
+                <select name="type_id" id="" class="form-control" required>
+                    <option value="">Select ...</option>
+                    @foreach($types as $item)
+                        <option value="{{ $item->id }}" {{ $product->type_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Location</label>
                 <select name="location_id" id="" class="form-control" required>
                     <option value="">Select Location</option>

@@ -99,30 +99,30 @@
 
                 methods: {
                     searchProduct(){
-                        const data = { search: $('#search').val() };
+                        if($('#search').val()){
+                            const data = { search: $('#search').val() };
 
-                        fetch('{{ route('user.scan-products') }}', {
-                            method: 'POST', // or 'PUT'
-                            headers: {
-                                'content-type': 'application/json',
-                                "Accept": "application/json, text-plain, */*",
-                                "X-Requested-With": "XMLHttpRequest",
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                            },
-                            body: JSON.stringify(data),
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if(!data.length){
-                                alert('There is no data.')
-                            }
-                            this.products = data
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
-
-
+                            fetch('{{ route('user.scan-products') }}', {
+                                method: 'POST', // or 'PUT'
+                                headers: {
+                                    'content-type': 'application/json',
+                                    "Accept": "application/json, text-plain, */*",
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                                body: JSON.stringify(data),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if(!data.length){
+                                    alert('There is no data.')
+                                }
+                                this.products = data
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                        }
                     }
                 }
             });

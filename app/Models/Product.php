@@ -14,8 +14,8 @@ class Product extends Model
     public function scopeFilter($query, array $filters){
         $query->when($filters['search'] ?? false, function($query, $search){
             $query
-                ->where('id', 'like', (int)ltrim($search, "P"))
-                ->where('note', 'like', $search);
+                ->where('note', 'like', $search)
+                ->orWhere('id', 'like', (int)ltrim($search, "P"));
         });
     }
 

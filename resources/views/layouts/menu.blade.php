@@ -33,6 +33,14 @@
             <span>Return</span>
         </a>
     </li>
+    <li class="">
+        <a href="{{ route('user.transactions.index') }}">
+            <div class="icon-w">
+                <div class="os-icon os-icon-layers"></div>
+            </div>
+            <span>Tracking</span>
+        </a>
+    </li>
     <li class="sub-header">
         <span>User Management</span>
     </li>

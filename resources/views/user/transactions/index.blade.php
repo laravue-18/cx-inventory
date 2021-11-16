@@ -1,34 +1,43 @@
 @extends('layouts.master')
 
-@section('title') Stock @endsection
+@section('title') Tracking @endsection
 
 @section('content')
     <h6 class="element-header">
-        Stock
+        Tracking
     </h6>
     <div class="element-box">
         <div class="my-2 text-right">
-            <a href="{{ route('user.products.create') }}" class="btn btn-primary mr-3">New Stock</a>
+            <a href="{{ route('user.products.create') }}" class="btn btn-primary mr-3">New Track</a>
         </div>
         <div class="table-responsive">
             <table id="dtbl" width="100%" class="table table-striped table-lightfont">
                 <thead>
                     <tr>
+                        <th>Product Code</th>
+                        <th>Date of Purchase</th>
+                        <th>Client</th>
+                        <th>Location</th>
+                        <th>Product Type</th>
                         <th>Make</th>
                         <th>Model</th>
                         <th>Part No</th>
                         <th>Storage</th>
                         <th>Colour</th>
                         <th>Qty</th>
-                        <th>SN / IMEI</th>
+                        <th>Price Paid</th>
                         <th>Notes</th>
-                        <th>Action</th>
+                        <th>Sold to</th>
+                        <th>Price</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($rows as $row)
                         <tr>
-                            <td>{{ $row->make->name }}</td>
+                            <td>{{ $row->product->id }}</td>
+                            <td>{{ $row->created_at }}</td>
+                            <td>{{ $row->product->make->name }}</td>
                             <td>{{ $row->productModel->name }}</td>
                             <td>{{ $row->part_number }}</td>
                             <td>{{ $row->storage->name }}</td>

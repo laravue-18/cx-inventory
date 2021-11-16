@@ -7,7 +7,7 @@
         Stock Out
     </h6>
     <div class="element-box row">
-        <form action="{{ route('user.products.storeOut') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
+        <form action="{{ route('user.transactions.store') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
             @csrf
 
             <div class="form-group">
@@ -71,8 +71,13 @@
             </div>
 
             <div class="form-group">
-                <label>Price</label>
-                <input name="price" type="number" class="form-control" required>
+                <label>Condition</label>
+                <select name="user_id" id="" class="form-control" required>
+                    <option value="">Select ...</option>
+                    @foreach($conditions as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label>Note</label>

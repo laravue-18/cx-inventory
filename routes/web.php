@@ -28,6 +28,7 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::post('stockout', [\App\Http\Controllers\ProductController::class, 'storeOut'])->name('products.storeOut');
     Route::get('returns', [\App\Http\Controllers\ProductController::class, 'createReturn'])->name('products.createReturn');
     Route::post('returns', [\App\Http\Controllers\ProductController::class, 'storeReturn'])->name('products.storeReturn');
+    Route::resource('transactions', \App\Http\Controllers\TransactionController::class);
 
     Route::get('cx/members', function(){
         return view('user.cx.members');

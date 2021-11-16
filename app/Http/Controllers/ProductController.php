@@ -110,6 +110,7 @@ class ProductController extends Controller
 
         $product->conditions()->sync($data['conditions']);
 
+        $product->items()->delete();
         $product->items()->createMany($serials);
 
         return redirect(route('user.products.index'))->with('message', 'New Stock has been added.');

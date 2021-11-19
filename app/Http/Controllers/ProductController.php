@@ -157,7 +157,7 @@ class ProductController extends Controller
         $products = $items->map(function ($item) {
             return $item->product->load('productType', 'make', 'productModel');
         });
-        $merged = $products->merge(Product::with('productType', 'make', 'productModel')->filter(request(['search']))->get());
+        $merged = $products->merge(Product::with('productType', 'make', 'productModel', 'conditions')->filter(request(['search']))->get());
         return $merged;
     }
 }

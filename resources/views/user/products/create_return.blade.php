@@ -4,7 +4,7 @@
 
 @section('content')
     <h6 class="element-header">
-        Stock Out
+        Return
     </h6>
     <div class="element-box row">
         <form action="{{ route('user.products.storeOut') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
@@ -24,28 +24,31 @@
                 </div>
 
                 <div v-if="products.length">
-                    <div class="form-group table-responsive mb-4">
-                        <table class="table table-lightborder">
+                    <div class="form-group">
+                        <table class="table shadow">
                             <thead>
-                                <tr>
-                                    <th> Product Code </th>
-                                    <th> Product Type </th>
-                                    <th> Make </th>
-                                    <th> Model </th>
-                                    <th> Price </th>
-                                </tr>
+                            <tr>
+                                <th> Product Code </th>
+                                <th> Product Type </th>
+                                <th> Make </th>
+                                <th> Model </th>
+                                <th> Condition </th>
+                                <th style="width: 140px;"> Refund Value </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <template v-for = 'product in products'>
-                                    <tr>
-                                        <td> @{{ pcode(product.id) }} </td>
-                                        <td> @{{ product.product_type ? product.product_type.name : ''}} </td>
-                                        <td> @{{ product.make ? product.make.name : '' }} </td>
-                                        <td> @{{ product.product_model ? product.product_model.name : '' }} </td>
-                                        <td> $ @{{ product.price }}</td>
-                                    </tr>
-                                </template>
-
+                            <template v-for="product in products">
+                                <tr>
+                                    <td> @{{ pcode(product.id) }} </td>
+                                    <td> @{{ product.product_type ? product.product_type.name : ''}} </td>
+                                    <td> @{{ product.make ? product.make.name : '' }} </td>
+                                    <td> @{{ product.product_model ? product.product_model.name : '' }} </td>
+                                    <td> @{{ product.conditions ? product.conditions.map(i => i.name).join(',') : '' }}</td>
+                                    <td>
+                                        <input type="number" class="form-control" :name="'products[' + product.id + ']'" required>
+                                    </td>
+                                </tr>
+                            </template>
                             </tbody>
                         </table>
                     </div>
@@ -63,10 +66,6 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label>Refund Value</label>
-                <input name="value" type="number" class="form-control" required>
-            </div>
             <div class="form-group">
                 <label>Note</label>
                 <input name="note" type="text" class="form-control" required>
@@ -92,30 +91,33 @@
 
                 methods: {
                     searchProduct(){
-                        const data = { search: $('#search').val() };
+                        if($('#search').val()){
+                            const data = { search: $('#search').val() };
 
-                        fetch('{{ route('user.scan-products') }}', {
-                            method: 'POST', // or 'PUT'
-                            headers: {
-                                'content-type': 'application/json',
-                                "Accept": "application/json, text-plain, */*",
-                                "X-Requested-With": "XMLHttpRequest",
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                            },
-                            body: JSON.stringify(data),
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if(!data.length){
-                                    alert('There is no data.')
-                                }
-                                this.products = data
+                            fetch('{{ route('user.scan-products') }}', {
+                                method: 'POST', // or 'PUT'
+                                headers: {
+                                    'content-type': 'application/json',
+                                    "Accept": "application/json, text-plain, */*",
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                                body: JSON.stringify(data),
                             })
-                            .catch((error) => {
-                                console.error('Error:', error);
-                            });
-
-
+                                .then(response => response.json())
+                                .then(data => {
+                                    if(data.length){
+                                        this.products = this.products.concat(data)
+                                        this.renderKey++
+                                    }else{
+                                        alert(`There is no data for "${$('#search').val()}".`)
+                                    }
+                                    $('#search').val('')
+                                })
+                                .catch((error) => {
+                                    console.error('Error:', error);
+                                });
+                        }
                     }
                 }
             });

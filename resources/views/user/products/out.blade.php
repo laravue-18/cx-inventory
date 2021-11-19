@@ -9,10 +9,9 @@
     <div class="element-box row">
         <form action="{{ route('user.transactions.store') }}" method="post" enctype="multipart/form-data" class="col-lg-6">
             @csrf
-
             <div class="form-group">
                 <label>Customer</label>
-                <select name="user_id" id="" class="form-control" required>
+                <select name="customer_id" id="" class="form-control" required>
                     <option value="">Select Customer</option>
                     @foreach($suppliers as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -33,7 +32,7 @@
                     <label for="">Scan Product</label>
                     <div class="row">
                         <div class="col-md-10 col-8">
-                            <input name="search" id="search" type="text" @change.stop.prevent="" class="form-control" placeholder="IMEI / SN / P Code" required>
+                            <input name="search" id="search" type="text" @change.stop.prevent="" class="form-control" placeholder="IMEI / SN / P Code">
                         </div>
                         <div class="col-md-2 col-4">
                             <button class="btn btn btn-primary mr-1 waves-effect waves-light btn-block h-100" @click.stop.prevent="searchProduct">Scan</button>
@@ -42,43 +41,37 @@
                 </div>
 
                 <div v-if="products.length">
-                    <div class="form-group table-responsive mb-4">
-                        <table class="table table-lightborder">
+                    <div class="form-group">
+                        <table class="table shadow">
                             <thead>
-                                <tr>
-                                    <th> Product Code </th>
-                                    <th> Product Type </th>
-                                    <th> Make </th>
-                                    <th> Model </th>
-                                    <th> Price </th>
-                                </tr>
+                            <tr>
+                                <th> Product Code </th>
+                                <th> Product Type </th>
+                                <th> Make </th>
+                                <th> Model </th>
+                                <th> Condition </th>
+                                <th style="width: 140px;"> Selling Price </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <template v-for = 'product in products'>
-                                    <tr>
-                                        <td> @{{ pcode(product.id) }} </td>
-                                        <td> @{{ product.product_type ? product.product_type.name : ''}} </td>
-                                        <td> @{{ product.make ? product.make.name : '' }} </td>
-                                        <td> @{{ product.product_model ? product.product_model.name : '' }} </td>
-                                        <td> $ @{{ product.price }}</td>
-                                    </tr>
-                                </template>
-
+                            <template v-for="product in products">
+                                <tr>
+                                    <td> @{{ pcode(product.id) }} </td>
+                                    <td> @{{ product.product_type ? product.product_type.name : ''}} </td>
+                                    <td> @{{ product.make ? product.make.name : '' }} </td>
+                                    <td> @{{ product.product_model ? product.product_model.name : '' }} </td>
+                                    <td> @{{ product.conditions ? product.conditions.map(i => i.name).join(',') : '' }}</td>
+                                    <td>
+                                        <input type="number" class="form-control" :name="'products[' + product.id + ']'" required>
+                                    </td>
+                                </tr>
+                            </template>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Condition</label>
-                <select name="user_id" id="" class="form-control" required>
-                    <option value="">Select ...</option>
-                    @foreach($conditions as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div>
             <div class="form-group">
                 <label>Note</label>
                 <input name="note" type="text" class="form-control" required>
@@ -98,7 +91,8 @@
                 data(){
                     return {
                         search: '',
-                        products: []
+                        products: [],
+                        renderKey: 0
                     }
                 },
 
@@ -119,10 +113,13 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                if(!data.length){
-                                    alert('There is no data.')
+                                if(data.length){
+                                    this.products = this.products.concat(data)
+                                    this.renderKey++
+                                }else{
+                                    alert(`There is no data for "${$('#search').val()}".`)
                                 }
-                                this.products = data
+                                $('#search').val('')
                             })
                             .catch((error) => {
                                 console.error('Error:', error);

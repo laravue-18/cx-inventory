@@ -39,6 +39,7 @@ class Product extends Model
         return $this->belongsTo('App\Models\Location');
     }
 
+
     public function colour(){
         return $this->belongsTo('App\Models\Colour');
     }
@@ -53,5 +54,9 @@ class Product extends Model
 
     public function items(){
         return $this->hasMany('App\Models\Item');
+    }
+
+    public function transactions(){
+        return $this->hasMany('App\Models\Transaction');
     }
 }

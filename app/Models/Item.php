@@ -15,7 +15,8 @@ class Item extends Model
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
             $query
-                ->where('serial_number', 'like', $search );
+                ->where('serial_number', 'like', $search )
+                ->orWhere('id', 'like', (int)ltrim($search, "T"));
         });
     }
 

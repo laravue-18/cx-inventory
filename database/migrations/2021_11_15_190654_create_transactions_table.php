@@ -16,11 +16,12 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->integer('qty');
-            $table->float('paid');
+            $table->integer('qty')->nullable();
+            $table->float('selling_price');
             $table->string('note');
-            $table->string('buyer');
-            $table->string('status');
+            $table->string('customer_id');
+            $table->string('location_id');
+            $table->string('status')->default('sold');
 
             $table->timestamps();
         });

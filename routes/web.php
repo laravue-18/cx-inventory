@@ -29,6 +29,7 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function(){
     Route::get('returns', [\App\Http\Controllers\ProductController::class, 'createReturn'])->name('products.createReturn');
     Route::post('returns', [\App\Http\Controllers\ProductController::class, 'storeReturn'])->name('products.storeReturn');
     Route::resource('transactions', \App\Http\Controllers\TransactionController::class);
+    Route::post('scan-transaction', [\App\Http\Controllers\TransactionController::class, 'scan'])->name('scan-transaction');
 
     Route::get('cx/members', function(){
         return view('user.cx.members');

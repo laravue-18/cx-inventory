@@ -66,7 +66,7 @@ class TransactionController extends Controller
 
         if($product){
             if($product->transactions){
-                return response()->json($product->load('productType', 'make', 'productModel', 'conditions', 'transactions', 'supplier', 'location', 'items', 'colour'));
+                return response()->json($product->load('productType', 'make', 'productModel', 'storage', 'conditions', 'transactions', 'supplier', 'location', 'items', 'colour'));
             }
         }
         return response()->json(false);

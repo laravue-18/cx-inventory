@@ -21,7 +21,7 @@
                     <tbody v-if="product && (!!product.transactions) && product.transactions.length">
                         <tr> <td>Transaction Code:</td> <td>@{{ pcode(product.transactions[0].id, "T") }}</td> </tr>
                         <tr> <td>Product Code:</td> <td>@{{ pcode(product.id, "P") }}</td> </tr>
-                        <tr> <td>Date of Purchase:</td> <td>@{{ product.transactions[0].created_at }}</td> </tr>
+                        <tr> <td>Date of Purchase:</td> <td>@{{ product.transactions[0].created_at.substring(0, 10) }}</td> </tr>
                         <tr> <td>Client:</td> <td>@{{ product.supplier ? product.supplier.name : '' }}</td> </tr>
                         <tr> <td>Location:</td> <td>@{{ product.location ? product.location.name : '' }}</td> </tr>
                         <tr> <td>Product Type:</td> <td>@{{ product.product_type ? product.product_type.name : '' }}</td> </tr>
